@@ -1,16 +1,17 @@
-import { getPointsFromGame, Opponent, Player } from './getPointsFromGame';
+import { getPointsFromGame } from './getPointsFromGame';
+import { Move } from './types';
 
 describe('getPointsFromGame()', () => {
-  it.each<[Player, Opponent, number]>([
-    ['X', 'A', 4],
-    ['X', 'B', 1],
-    ['X', 'C', 7],
-    ['Y', 'A', 8],
-    ['Y', 'B', 5],
-    ['Y', 'C', 2],
-    ['Z', 'A', 3],
-    ['Z', 'B', 9],
-    ['Z', 'C', 6],
+  it.each<[Move, Move, number]>([
+    [Move.Rock, Move.Rock, 4],
+    [Move.Rock, Move.Paper, 1],
+    [Move.Rock, Move.Scissors, 7],
+    [Move.Paper, Move.Rock, 8],
+    [Move.Paper, Move.Paper, 5],
+    [Move.Paper, Move.Scissors, 2],
+    [Move.Scissors, Move.Rock, 3],
+    [Move.Scissors, Move.Paper, 9],
+    [Move.Scissors, Move.Scissors, 6],
   ])(
     'should return the points from a single game',
     (player, opponent, expected) => {

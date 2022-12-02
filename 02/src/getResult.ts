@@ -1,11 +1,12 @@
-import { Result, moveMap } from './getPointsFromGame';
+import { moveScores } from './consts';
+import { Result } from './types';
 
 export function getResult(player: number, opponent: number): Result {
-  if (player === moveMap.rock && opponent === moveMap.scissors) {
+  if (player === moveScores.rock && opponent === moveScores.scissors) {
     return Result.Win;
   }
 
-  if (player === moveMap.scissors && opponent === moveMap.rock) {
+  if (player === moveScores.scissors && opponent === moveScores.rock) {
     return Result.Loss;
   }
 
