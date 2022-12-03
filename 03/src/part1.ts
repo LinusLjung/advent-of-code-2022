@@ -1,10 +1,7 @@
 import { findDuplicates } from './findDuplicates';
 import { getCharPriority } from './getCharPriority';
 import { splitString } from './splitString';
-
-function sumArray(array: number[]): number {
-  return array.reduce((acc, curr) => acc + curr);
-}
+import { sumArray } from './sumArray';
 
 export function part1(input: string) {
   return sumArray(
