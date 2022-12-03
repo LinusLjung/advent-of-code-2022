@@ -2,7 +2,7 @@ import eol from 'eol';
 import fs from 'fs';
 import { getArgs } from './getArgs';
 
-function getInput() {
+function getInputPath() {
   const {
     _: [inputPath],
   } = getArgs<{
@@ -13,7 +13,11 @@ function getInput() {
     throw new Error('Missing `input` argument');
   }
 
-  return eol.lf(fs.readFileSync(inputPath, 'utf8'));
+  return inputPath;
+}
+
+function getInput(inputPath = getInputPath()) {
+  return eol.lf(fs.readFileSync(inputPath, 'utf8')).replace(/\n+$/, '');
 }
 
 export default getInput;
