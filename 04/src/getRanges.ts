@@ -1,4 +1,4 @@
-type SectionRange = [number, number];
+import { SectionRange } from "./types";
 
 export function getRanges(line: string): [SectionRange, SectionRange] {
   return line

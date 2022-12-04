@@ -1,7 +1,8 @@
 import { fullyContains } from './fullyContains';
+import { SectionRange } from './types';
 
 describe('fullyContains()', () => {
-  it.each<[[number, number], [number, number], boolean]>([
+  it.each<[SectionRange, SectionRange, boolean]>([
     [[2, 4], [6, 8], false],
     [[2, 3], [4, 5], false],
     [[5, 7], [7, 9], false],
