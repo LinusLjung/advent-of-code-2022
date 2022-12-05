@@ -1,6 +1,10 @@
 import { Stacks, Step } from './types';
 
-export function doStep(stacks: Stacks, { from, to, count }: Step): Stacks {
+export function doStep(
+  stacks: Stacks,
+  { from, to, count }: Step,
+  method: 'single' | 'multiple' = 'single'
+): Stacks {
   const newStacks = { ...stacks };
 
   from = from - 1;
@@ -13,14 +17,18 @@ export function doStep(stacks: Stacks, { from, to, count }: Step): Stacks {
   const fromStack = newStacks[from] ? [...newStacks[from]] : [];
   const toStack = newStacks[to] ? [...newStacks[to]] : [];
 
-  for (let i = 0; i < count; i++) {
-    const item = fromStack.pop();
+  if (method === 'single') {
+    for (let i = 0; i < count; i++) {
+      const item = fromStack.pop();
 
-    if (!item) {
-      break;
+      if (!item) {
+        break;
+      }
+
+      toStack.push(item);
     }
-
-    toStack.push(item);
+  } else {
+    toStack.push(...fromStack.splice(-count));
   }
 
   return {

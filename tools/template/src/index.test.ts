@@ -1,7 +1,7 @@
 import path from 'path';
 import getInput from './getInput';
 // import { part1 } from './part1';
-// import { part2 } from './part1';
+// import { part2 } from './part2';
 
 const input = getInput(path.join(__dirname, '../example-input.txt'));
 
