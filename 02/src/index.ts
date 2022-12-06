@@ -1,5 +1,5 @@
-import { getArgs } from './getArgs';
-import getInput from './getInput';
+import { getArgs } from '../../shared/getArgs';
+import getInput from '../../shared/getInput';
 import { part1 } from './part1';
 import { part2 } from './part2';
 
