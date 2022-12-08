@@ -1,4 +1,4 @@
-import { findDirectoriesOfMaxSize } from './findFoldersOfMaxSize';
+import { findDirectoriesOfMaxSize } from './findDirectoriesOfMaxSize';
 import { initializeFileSystem } from './initializeFileSystem';
 
 export function part1(input: string) {
