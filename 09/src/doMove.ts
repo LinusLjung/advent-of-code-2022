@@ -21,9 +21,9 @@ export function moveTail(head: Coord, tail: Coord): Coord {
 
 export function doMove(
   head: Coord,
-  tail: Coord,
+  tails: Coord[],
   direction: string
-): { head: Coord; tail: Coord } {
+): { head: Coord; tails: Coord[] } {
   const newHead = { ...head };
 
   switch (direction) {
@@ -41,5 +41,10 @@ export function doMove(
       break;
   }
 
-  return { head: newHead, tail: moveTail(newHead, tail) };
+  return {
+    head: newHead,
+    tails: tails.reduce<Coord[]>((tails, tail) => {
+      return [...tails, moveTail(tails.at(-1) ?? newHead, tail)];
+    }, []),
+  };
 }
