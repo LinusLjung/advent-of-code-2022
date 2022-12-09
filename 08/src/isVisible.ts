@@ -1,64 +1,40 @@
-import { Grid } from './types';
+import { getTree } from './getTree';
+import {
+  getBottomTrees,
+  getLeftTrees,
+  getRightTrees,
+  getTopTrees,
+} from './getTrees';
+import { isEdge } from './isEdge';
+import { TreeFunction } from './types';
 
-function getTree(grid: Grid, x: number, y: number): number | null {
-  return grid[y]?.[x] ?? null;
-}
-
-function isVisibleFromTop(grid: Grid, x: number, y: number): boolean {
+const isVisibleFromTop: TreeFunction<boolean> = (grid, x, y) => {
   const tree = getTree(grid, x, y);
 
-  if (!tree) {
-    return false;
-  }
+  return !getTopTrees(grid, x, y).some((t) => t >= tree);
+};
 
-  return !grid
-    .slice(0, y)
-    .map((row) => row[x])
-    .some((t) => t >= tree);
-}
-
-function isVisibleFromBottom(grid: Grid, x: number, y: number): boolean {
+const isVisibleFromBottom: TreeFunction<boolean> = (grid, x, y) => {
   const tree = getTree(grid, x, y);
 
-  if (!tree) {
-    return false;
-  }
+  return !getBottomTrees(grid, x, y).some((t) => t >= tree);
+};
 
-  return !grid
-    .slice(y + 1)
-    .map((row) => row[x])
-    .some((t) => t >= tree);
-}
-
-function isVisibleFromLeft(grid: Grid, x: number, y: number): boolean {
+const isVisibleFromLeft: TreeFunction<boolean> = (grid, x, y) => {
   const tree = getTree(grid, x, y);
 
-  if (!tree) {
-    return false;
-  }
+  return !getLeftTrees(grid, x, y).some((t) => t >= tree);
+};
 
-  return !grid[y].slice(0, x).some((t) => t >= tree);
-}
-
-function isVisibleFromRight(grid: Grid, x: number, y: number): boolean {
+const isVisibleFromRight: TreeFunction<boolean> = (grid, x, y) => {
   const tree = getTree(grid, x, y);
 
-  if (!tree) {
-    return false;
-  }
+  return !getRightTrees(grid, x, y).some((t) => t >= tree);
+};
 
-  return !grid[y].slice(x + 1).some((t) => t >= tree);
-}
-
-export function isVisible(grid: Grid, x: number, y: number): boolean {
-  const maxX = grid[0].length - 1;
-  const maxY = grid.length - 1;
-
-  if (x === 0 || x === maxX || y === 0 || y === maxY) {
-    return true;
-  }
-
+export const isVisible: TreeFunction<boolean> = (grid, x, y) => {
   if (
+    isEdge(grid, x, y) ||
     isVisibleFromTop(grid, x, y) ||
     isVisibleFromBottom(grid, x, y) ||
     isVisibleFromLeft(grid, x, y) ||
@@ -68,4 +44,4 @@ export function isVisible(grid: Grid, x: number, y: number): boolean {
   }
 
   return false;
-}
+};
