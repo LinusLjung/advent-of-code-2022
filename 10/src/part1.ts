@@ -1,13 +1,6 @@
+import { commandLength } from './consts';
+import { getCommand } from './getCommand';
 import { getPassedThreshold } from './getPassedThreshold';
-
-function getCommand(line: string): string[] {
-  return line.split(' ');
-}
-
-const commandLength = {
-  noop: 1,
-  addx: 2,
-};
 
 export function part1(input: string) {
   let x = 1;
@@ -28,7 +21,7 @@ export function part1(input: string) {
   }
 
   input.split('\n').forEach((line) => {
-    const [command, ...args] = getCommand(line);
+    const [command, arg] = getCommand(line);
 
     if (command === 'noop') {
       checkCycleThresholdAndAddToSum(cycle + commandLength.noop, cycle);
@@ -39,7 +32,7 @@ export function part1(input: string) {
       checkCycleThresholdAndAddToSum(cycle + commandLength.addx, cycle);
       cycle += commandLength.addx;
 
-      x += Number(args[0]);
+      x += arg;
     }
   });
 
