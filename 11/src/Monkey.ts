@@ -7,7 +7,8 @@ export class Monkey {
   targets: [number, number];
   inspectCounter = 0;
   monkeys: Monkey[] = [];
-  constructor(input: string) {
+  inspectReducesWorry: boolean;
+  constructor(input: string, inspectReducesWorry = true) {
     const [items, operation, divisor, target1, target2] = input
       .split('\n')
       .map((line) => line.trim());
@@ -28,6 +29,8 @@ export class Monkey {
       Number(targetRegex.exec(target1)?.[1]),
       Number(targetRegex.exec(target2)?.[1]),
     ];
+
+    this.inspectReducesWorry = inspectReducesWorry;
   }
 
   doRound() {
@@ -54,7 +57,13 @@ export class Monkey {
         break;
     }
 
-    return Math.floor(item / 3);
+    if (this.inspectReducesWorry) {
+      return Math.floor(item / 3);
+    }
+
+    return (
+      item % this.monkeys.reduce<number>((acc, curr) => acc * curr.divisor, 1)
+    );
   }
 
   getTarget(item: number) {

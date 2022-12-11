@@ -5,6 +5,7 @@
   "scripts": {
     "part1": "ts-node src/index.ts ./input.txt --part 1",
     "part2": "ts-node src/index.ts ./input.txt --part 2",
+    "part2:example": "ts-node src/index.ts ./example-input.txt --part 2",
     "example": "ts-node src/index.ts ./example-input.txt",
     "test": "jest",
     "test:watch": "jest --watch"
