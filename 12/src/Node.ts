@@ -84,7 +84,7 @@ export class Node {
       }
 
       const destinationHeight = (
-        node.height === 'E' ? 'z' : node.height
+        node.height === 'E' ? 'z' : node.height === 'S' ? 'a' : node.height
       ).charCodeAt(0);
       const thisHeight = (this.height === 'S' ? 'a' : this.height).charCodeAt(
         0
