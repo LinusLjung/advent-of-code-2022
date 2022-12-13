@@ -1,12 +1,14 @@
 import { getPairs } from './getPairs';
-import { pairIsInOrder } from './pairIsInOrder';
+import { getOrderOfPair } from './pairIsInOrder';
+import { Order } from './types';
 
 export function part1(input: string) {
   const pairs = getPairs(input);
 
   return pairs
     .reduce<number[]>(
-      (acc, pair, i) => (pairIsInOrder(...pair) ? [...acc, i + 1] : acc),
+      (acc, pair, i) =>
+        getOrderOfPair(...pair) === Order.Left ? [...acc, i + 1] : acc,
       []
     )
     .reduce((acc, curr) => acc + curr);
