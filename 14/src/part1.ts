@@ -19,7 +19,7 @@ export function part1(input: string) {
   const unitsOfSand: Coord[] = [];
 
   while (true) {
-    const sand = dropUnitOfSand([...obstacles, ...unitsOfSand], boundary);
+    const sand = dropUnitOfSand(obstacles, unitsOfSand, boundary);
 
     if (coordIsOutOfBounds(sand, boundary)) {
       break;

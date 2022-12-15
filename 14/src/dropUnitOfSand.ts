@@ -4,6 +4,7 @@ import { Coord } from './types';
 
 export function dropUnitOfSand(
   obstacles: Coord[],
+  sand: Coord[],
   yLimit: number,
   start: Coord = [500, 0]
 ) {
@@ -18,7 +19,8 @@ export function dropUnitOfSand(
       [currentCoord[0] + 1, targetY],
     ];
     const validTargets = targets.filter(
-      (target) => !coordIsObstacle(obstacles, target)
+      (target) =>
+        !coordIsObstacle(obstacles, target) && !coordIsObstacle(sand, target)
     );
 
     if (!validTargets.length) {

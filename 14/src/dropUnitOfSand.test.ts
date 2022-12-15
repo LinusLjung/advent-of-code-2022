@@ -162,7 +162,7 @@ describe('dropUnitOfSand()', () => {
   ])(
     'should return the resting coord of the unit of sand',
     (obstacles, expected) => {
-      expect(dropUnitOfSand(obstacles, 9)).toStrictEqual(expected);
+      expect(dropUnitOfSand(obstacles, [], 9)).toStrictEqual(expected);
     }
   );
 });
